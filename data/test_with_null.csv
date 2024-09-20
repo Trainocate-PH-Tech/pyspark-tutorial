@@ -1,0 +1,10 @@
+Name,age,Experience,Salary
+PersonA,31,10,30000
+PersonB,30,8,25000
+PersonC,29,4,20000
+PersonD,24,3,20000
+PersonE,,,40000
+,35,10,40000
+,36,,
+,,,
+
