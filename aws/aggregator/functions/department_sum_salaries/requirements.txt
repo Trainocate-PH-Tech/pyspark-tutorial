@@ -1,4 +1,0 @@
-requests
-pyspark
-numpy
-setuptools
