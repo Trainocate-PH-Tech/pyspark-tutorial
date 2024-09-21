@@ -6,7 +6,7 @@ Description: >
   Sample SAM Template for aggregator
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 900 # 900 seconds
     LoggingConfig:
       LogFormat: JSON
 
@@ -22,10 +22,19 @@ Resources:
         Size: 5120
       Architectures:
       - x86_64
+      Policies:
+        - 
+          Statement:
+            -
+              Sid: LambdaS3Access
+              Effect: Allow
+              Action:
+                - s3:GetObject
+              Resource: arn:aws:s3:::training-dummy-data
 
 Outputs:
   DepartmentSumSalariesFunction:
-    Description: Hello World Lambda Function ARN
+    Description: DepartmentSumSalaries Lambda Function ARN
     Value: !GetAtt DepartmentSumSalariesFunction.Arn
   DepartmentSumSalariesFunctionIamRole:
     Description: Implicit IAM Role created for Hello World function
