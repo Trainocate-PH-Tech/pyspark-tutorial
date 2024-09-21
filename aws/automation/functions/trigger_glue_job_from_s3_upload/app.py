@@ -1,42 +1,45 @@
 import json
+import boto3
 
-# import requests
-
+# Reference: https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html
 
 def lambda_handler(event, context):
-    """Sample pure Lambda function
+    # Define the job name
+    glue_job_name = "Print Parameters"
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
-
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
-
-    context: object, required
-        Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
-    # try:
-    #     ip = requests.get("http://checkip.amazonaws.com/")
-    # except requests.RequestException as e:
-    #     # Send some context about this error to Lambda Logs
-    #     print(e)
-
-    #     raise e
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            # "location": ip.text.replace("\n", "")
-        }),
+    # Define job parameters
+    job_parameters = {
+        '--bucket_name': "my-bucket",
+        '--key': "my-file"
     }
+
+    # Create a Glue client
+    glue_client = boto3.client('glue')
+
+    try:
+        # Start the Glue job
+        response = glue_client.start_job_run(
+            JobName=glue_job_name,
+            Arguments=job_parameters
+        )
+
+        print(f"Started Glue job: {glue_job_name}, Run ID: {response['JobRunId']}")
+
+        return {
+            "statusCode": 200,
+            "body": json.dumps({
+                "message": "Done.",
+                # "location": ip.text.replace("\n", "")
+            }),
+        }
+    except Exception as e:
+        error_message = f"Error starting Glue job: {e}"
+
+        print(error_message)
+
+        return {
+            "statusCode": 500,
+            "body": json.dumps({
+                "message": error_message
+            }),
+        }
