@@ -1,4 +1,4 @@
-# Solutions for Imputation Exercise
+# Imputation Exercises
 
 ## Exercise 1
 
