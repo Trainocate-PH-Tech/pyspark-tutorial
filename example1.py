@@ -3,7 +3,7 @@ from pyspark.sql import SparkSession
 
 # Create a SparkSession, which is the entry point to using Spark
 spark = SparkSession.builder \
-    .appName('Practice') \  # Set the application name to 'Practice'
+    .appName('Example1') \  # Set the application name to 'Practice'
     .getOrCreate()          # Create a new session or retrieve an existing one
 
 # Read a CSV file into a DataFrame
