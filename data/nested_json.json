@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Alice",
+        "age": 30,
+        "department": {
+            "name": "HR",
+            "location": "New York"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Bob",
+        "age": 35,
+        "department": {
+            "name": "Engineering",
+            "location": "San Francisco"
+        }
+    }
+]

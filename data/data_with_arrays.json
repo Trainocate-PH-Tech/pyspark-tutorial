@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "Alice",
+        "interests": ["Reading", "Traveling"]
+    },
+    {
+        "id": 2,
+        "name": "Bob",
+        "interests": ["Gaming", "Cooking"]
+    }
+]
